@@ -2,8 +2,9 @@
 title: 'Sqlite Simple But Mightly'
 description: 'Brief piece on sqlite'
 pubDate: 'Jul 22 2024'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/blog-placeholder-1.jpg'
 ---
+
 Many of y’all may be familiar with SQLite. For some of you, it is that little file you used in school when learning about databases, maybe their internal data structures, and how to query them. For others, it might be that tiny tool you used to get that hackathon project up and running that you will definitely get back to and finish.
 
 Before going into what you can use it for, let's talk about what's under the hood that makes it special. Let's start with the definition, we'll grab it straight from the official website, "SQLite is t a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine". These are pretty impressive claims, but how does it accomplish them? Let's go down the list. 
