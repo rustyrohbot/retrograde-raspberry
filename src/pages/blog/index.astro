@@ -2,55 +2,53 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/BlogCard.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 
+
+// Fetch and sort blog posts
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const [latestPost, ...otherPosts] = posts;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-gray-50 text-gray-800 font-sans">
+  <body class="flex flex-col min-h-full m-0 bg-gray-50">
     <Header />
-    <main class="max-w-5xl mx-auto py-8 px-4">
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
+      <h1 class="text-4xl font-bold text-center">Blog</h1>
+
+      <!-- Large Card for Latest Post -->
       <section>
-        <ul class="flex flex-wrap gap-8 list-none p-0">
-          {posts.map((post, index) => (
-            <li
-              class={
-                index === 0
-                  ? 'w-full text-center mb-4'
-                  : 'w-full sm:w-[calc(50%-2rem)]'
-              }
-            >
-              <a href={`/blog/${post.id}/`} class="block transition hover:shadow-lg">
-                <img
-                  src={post.data.heroImage}
-                  alt=""
-                  class="w-full rounded-lg mb-2"
-                />
-                <h4
-                  class={
-                    index === 0
-                      ? 'text-3xl font-bold'
-                      : 'text-lg font-semibold'
-                  }
-                >
-                  {post.data.title}
-                </h4>
-                <p class="text-sm text-gray-500">
-                  <FormattedDate date={post.data.pubDate} />
-                </p>
-              </a>
-            </li>
+        <BlogCard
+          title={latestPost.data.title}
+          pubDate={latestPost.data.pubDate}
+          link={`/blog/${latestPost.id}/`}
+          imageSrc={latestPost.data.heroImage}
+          isLarge={true}
+        />
+      </section>
+
+      <!-- Grid of Smaller Cards for Other Posts -->
+      <section>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {otherPosts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              pubDate={post.data.pubDate}
+              link={`/blog/${post.id}/`}
+              imageSrc={post.data.heroImage}
+            />
           ))}
-        </ul>
+        </div>
       </section>
     </main>
     <Footer />

@@ -1,0 +1,47 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    name: "Alt Text Generator",
+    description:
+      "A small web app that prompts for an Anthropics or OpenAI API key, then allows you to upload images to generate alt text using the selected provider.",
+    stack: ["Go", "Tailwind", "Templ", "HTMX"],
+    url: "https://github.com/rustyrohbot/alt-text-generator",
+  },
+  {
+    name: "Python Course v1",
+    description:
+      "A Python course that guides learners through engineering a simple CLI application.",
+    stack: ["Python"],
+    url: "https://github.com/rustyrohbot/python-course",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <BaseHead title="Projects | {SITE_TITLE}" description="A showcase of my projects." />
+  </head>
+  <body class="flex flex-col min-h-full m-0 bg-gray-50">
+    <Header />
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
+      <h1 class="text-4xl font-bold text-center">Projects</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {projects.map((project) => (
+          <ProjectCard
+            name={project.name}
+            description={project.description}
+            stack={project.stack}
+            url={project.url}
+          />
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

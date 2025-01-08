@@ -1,0 +1,42 @@
+---
+export interface BlogCardProps {
+  title: string;
+  pubDate: Date;
+  link: string;
+  imageSrc: string;
+  isLarge?: boolean;
+}
+
+const { title, pubDate, link, imageSrc, isLarge = false } = Astro.props;
+---
+
+<div
+  class={`relative rounded-lg shadow-lg overflow-hidden ${
+    isLarge ? 'h-96' : 'h-60'
+  } flex flex-col`}
+>
+  <a href={link} class="block h-full w-full">
+    <!-- Image Container -->
+    <img
+      src={imageSrc}
+      alt=""
+      class="w-full h-full object-cover"
+    />
+    <!-- Text Content -->
+    <div
+      class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-80 text-white p-4"
+    >
+      <h2 class="font-bold text-lg truncate">{title}</h2>
+      <time
+        datetime={pubDate.toISOString()}
+        class="block mt-1 text-sm text-gray-300"
+      >
+        {pubDate.toLocaleDateString('en-us', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })}
+      </time>
+    </div>
+  </a>
+</div>
