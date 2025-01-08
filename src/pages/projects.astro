@@ -5,19 +5,19 @@ import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = [
+{
+    name: "Python Course v1",
+    description:
+      "A Python course that guides learners through over engineering a simple CLI application.",
+    stack: ["Python"],
+    url: "https://github.com/rustyrohbot/python-course",
+  },
   {
     name: "Alt Text Generator",
     description:
-      "A small web app that prompts for an Anthropics or OpenAI API key, then allows you to upload images to generate alt text using the selected provider.",
+      "A small web app that first prompts for an Anthropic or OpenAI API key, and then allows you to upload images to generate alt text using the selected provider.",
     stack: ["Go", "Tailwind", "Templ", "HTMX"],
     url: "https://github.com/rustyrohbot/alt-text-generator",
-  },
-  {
-    name: "Python Course v1",
-    description:
-      "A Python course that guides learners through engineering a simple CLI application.",
-    stack: ["Python"],
-    url: "https://github.com/rustyrohbot/python-course",
   },
 ];
 ---
