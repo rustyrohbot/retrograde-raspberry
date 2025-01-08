@@ -5,13 +5,12 @@ import HeaderLink from './HeaderLink.astro';
 <header class="p-4 bg-white shadow-md relative z-50"> <!-- Add z-50 here -->
   <nav class="flex items-center justify-between">
     <!-- Mobile Leftmost Home Link -->
-    <h2 class="text-lg block md:hidden">
+    <h2 class="text-lg block">
       <a href="/" class="text-black hover:text-accent">Home</a>
     </h2>
 
     <!-- Desktop Navigation Links -->
     <div class="hidden md:flex space-x-4 ml-auto mr-auto">
-      <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
       <HeaderLink href="/projects">Projects</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
