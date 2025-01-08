@@ -1,68 +1,91 @@
-# Astro Starter Kit: Blog
+# Rusty Rohbot's Blog
 
-```sh
-npm create astro@latest -- --template blog
+This is my personal blog, built using [Astro](https://astro.build/). It features a clean, responsive design with content organized for easy management.
+
+## Features
+
+- **Blog Posts**: Written in Markdown and rendered dynamically.
+- **Projects Showcase**: A dedicated page for highlighting key projects.
+- **Contact Form**: Integrated with Netlify Forms for simple submission handling.
+- **Mobile-Friendly**: Fully responsive design for all devices.
+
+## Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
+├── public/                     # Static assets like images, icons, and more
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+│   ├── components/             # Reusable UI components
+│   ├── content/                # Blog posts (Markdown)
+│   ├── layouts/                # Layout templates for pages and posts
+│   └── pages/                  # Pages (home, about, projects, blog, contact)
+├── astro.config.mjs            # Astro configuration
+├── package.json                # Dependencies and scripts
+├── tailwind.config.mjs         # Tailwind CSS configuration
+└── tsconfig.json               # TypeScript configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Pages
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Home (`/`)
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+- Brief introduction and the latest blog posts.
 
-Any static assets, like images, can be placed in the `public/` directory.
+### About (`/about`)
 
-## 🧞 Commands
+- Information about me and my background.
 
-All commands are run from the root of the project, from a terminal:
+### Blog (`/blog`)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Displays all blog posts, including featured and recent articles.
+- Posts are written in Markdown and include metadata.
 
-## 👀 Want to learn more?
+### Projects (`/projects`)
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Highlights projects with key information such as:
+  - Name
+  - Description
+  - Technologies used
+  - Links to live versions or repositories
 
-## Credit
+### Contact (`/contact`)
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- A form to reach out with fields for:
+  - Name (required)
+  - Email (optional)
+  - Phone (optional)
+  - Message (required)
+- Submissions are handled through Netlify Forms.
+
+## Running Locally
+
+To run the blog locally:
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:rustyrohbot/retrograde-raspberry.git
+   cd retrograde-raspberry
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser at [http://localhost:4321](http://localhost:4321).
+
+## Deployment
+
+This blog is designed to be deployed on [Netlify](https://netlify.com). Deployment steps:
+
+1. Push the repository to GitHub.
+2. Log in to Netlify and create a new site from GitHub.
+3. Select the repository and configure build settings if necessary.
+4. Deploy the site.
