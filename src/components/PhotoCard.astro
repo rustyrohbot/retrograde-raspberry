@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+
+export interface PhotoCardProps {
+  imageUrl: string;
+}
+
+const { imageUrl } = Astro.props;
+---
+
+<div class="rounded-lg shadow-md overflow-hidden bg-white">
+  <Image
+    src={imageUrl}
+    alt="Photography"
+    class="w-full h-full object-cover"
+    style="aspect-ratio: auto;"
+  />
+</div>

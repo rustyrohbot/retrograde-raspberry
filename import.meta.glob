@@ -1,0 +1,18 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:components';
+
+// Dynamically import all images from the `src/images` directory
+const images = import.meta.glob('/src/images/*.{jpg,jpeg,png,gif,webp,svg}');
+const imageEntries = Object.entries(images);
+
+// Map images into an array with paths
+const photos = await Promise.all(
+  imageEntries.map(async ([path, importFn]) => {
+    const module = await importFn();
+    return { src: module.default, name: path.split('/').pop() };
+  })
+);
+---
