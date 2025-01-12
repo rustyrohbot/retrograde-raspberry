@@ -2,7 +2,7 @@
 title: 'Continually Rebuilding (This Blog)'
 description: 'All the times I have rebuilt the same thing'
 pubDate: 'Jan 06 2025'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/images/blog/blog-post-2.jpg'
 ---
 
 This blog has been migrated a whole lotta times. I made the first iteration on Wordpress in the June of 2017 after a trip to India. At that point in my life, I was staunchly religious, and I had a personal relationship with Dr. Pranav Pandya of All World Gayatri Pariwar; in India that summer, he told me I should start writing a blog, and me being obedient to a fault at that point, went ahead and did what I was instructed. I didn't have a particularly good reason to pick Wordpress, I was comfortable with Java and Python at the time, but was fairly green when it came to HTML and CSS. So I scoured Reddit comments to find the go to recommendation for how to build a blog that I could host on my own domain. And the most common recommendation was to use Wordpress.

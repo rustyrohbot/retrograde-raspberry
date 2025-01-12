@@ -10,7 +10,7 @@ interface PhotoModule {
 }
 
 // Dynamically load images from the `src/images` directory
-const images = import.meta.glob<PhotoModule>('/src/images/*.{jpg,JPG,jpeg,png,gif,webp,svg}');
+const images = import.meta.glob<PhotoModule>('/src/images/photos/*.{jpg,JPG,jpeg,png,gif,webp,svg}');
 const imageEntries = Object.entries(images);
 
 // Map images into an array with paths

@@ -2,7 +2,7 @@
 title: 'Sqlite Simple But Mightly'
 description: 'Brief piece on sqlite'
 pubDate: 'Jul 22 2024'
-heroImage: '/blog-placeholder-1.jpg'
+heroImage: '/images/blog/blog-post-0.jpg'
 ---
 
 Many of y’all may be familiar with SQLite. For some of you, it is that little file you used in school when learning about databases, maybe their internal data structures, and how to query them. For others, it might be that tiny tool you used to get that hackathon project up and running that you will definitely get back to and finish.
