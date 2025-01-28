@@ -26,3 +26,5 @@ Adjusted for inflation, that is almost double the cost of the moon landing.
 Again, not an expert. Thanks to the advent of cloud computing, we have a lot of oxen. I really need someone to explain to me how spending eleven figures to make an even bigger ox is going to make the virtual intern better.
 
 Idk, maybe it's time I start playing around with Ollama.
+
+Edit: Jan 27 2025, I guess DeepSeek kinda proved the point, similar performance to OpenAI's reasoning model, but supposedly developed at a fraction of the cost and compute.
