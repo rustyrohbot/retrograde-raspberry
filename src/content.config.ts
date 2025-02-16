@@ -12,6 +12,8 @@ const blog = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
+		pinned: z.boolean().optional().default(false), // Add pinned field
+
 	}),
 });
 

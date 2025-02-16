@@ -6,38 +6,37 @@ export interface BlogCardProps {
   link: string;
   imageSrc: string;
   isLarge?: boolean;
+  class?: string;
 }
 
-const { title, pubDate, link, imageSrc, isLarge = false } = Astro.props;
+const { title, pubDate, link, imageSrc, isLarge = false, class: className = '' } = Astro.props;
 ---
 
-<div
-  class={`relative rounded-lg shadow-lg overflow-hidden ${
-    isLarge ? 'h-96' : 'h-60'
-  } flex flex-col`}
->
+<div class={`group relative rounded-lg shadow-lg overflow-hidden h-60 md:h-96 flex flex-col ${className}`}>
   <a href={link} class="block h-full w-full">
-    <!-- Image Container -->
-    <img
-      src={imageSrc}
-      alt=""
-      class="w-full h-full object-cover"
-    />
-    <!-- Text Content -->
-    <div
-      class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-80 text-white p-4"
-    >
-      <h2 class="font-bold text-lg truncate">{title}</h2>
-      <time
-        datetime={pubDate.toISOString()}
-        class="block mt-1 text-sm text-gray-300"
+    <!-- Image Container with Full Image Display -->
+    <div class="relative h-full w-full">
+      <img
+        src={imageSrc}
+        alt=""
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <!-- Overlay with Text -->
+      <div
+        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent text-white p-4"
       >
-        {pubDate.toLocaleDateString('en-us', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        })}
-      </time>
+        <h2 class="font-bold text-lg sm:text-xl">{title}</h2>
+        <time
+          datetime={pubDate.toISOString()}
+          class="block mt-1 text-sm text-gray-300"
+        >
+          {pubDate.toLocaleDateString('en-us', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          })}
+        </time>
+      </div>
     </div>
   </a>
 </div>

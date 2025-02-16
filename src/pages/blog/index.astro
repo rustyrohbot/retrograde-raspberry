@@ -1,20 +1,15 @@
 ---
-// src/pages/blog/index.astro
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-
 
 // Fetch and sort blog posts
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
-
-const [latestPost, ...otherPosts] = posts;
 ---
 
 <!doctype html>
@@ -27,31 +22,166 @@ const [latestPost, ...otherPosts] = posts;
     <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
       <h1 class="text-4xl font-bold text-center">Blog</h1>
 
-      <!-- Large Card for Latest Post -->
-      <section>
-        <BlogCard
-          title={latestPost.data.title}
-          pubDate={latestPost.data.pubDate}
-          link={`/blog/${latestPost.id}/`}
-          imageSrc={latestPost.data.heroImage}
-          isLarge={true}
-        />
-      </section>
+      <!-- Search and Sort Section -->
+      <div class="w-full mb-8">
+        <div class="flex gap-2">
+          <div class="relative flex-grow">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search posts..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+          <button
+            id="sortToggle"
+            class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 group"
+            title="Toggle sort order"
+          >
+            <svg
+              class="w-5 h-5 text-gray-400 group-hover:text-gray-500 transition-transform duration-200"
+              id="sortIcon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-      <!-- Grid of Smaller Cards for Other Posts -->
-      <section>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {otherPosts.map((post) => (
+      <!-- Blog Posts Container -->
+      <div id="blogPosts" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {posts.map((post, index) => (
+          <div
+            class={`blog-post ${index === 0 ? "md:col-span-2" : ""}`}
+            data-title={post.data.title}
+            data-description={post.data.description}
+            data-index={index}
+            data-date={post.data.pubDate.valueOf()}
+          >
             <BlogCard
               title={post.data.title}
               pubDate={post.data.pubDate}
               link={`/blog/${post.id}/`}
               imageSrc={post.data.heroImage}
+              isLarge={index === 0}
             />
-          ))}
-        </div>
-      </section>
+          </div>
+        ))}
+      </div>
+
+      <!-- No Results Message -->
+      <div id="noResults" class="hidden text-center py-8 text-gray-500">
+        No posts found matching your search.
+      </div>
     </main>
     <Footer />
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        const sortToggle = document.getElementById('sortToggle');
+        const blogPosts = document.getElementById('blogPosts');
+
+        // Return early if required elements don't exist
+        if (!searchInput || !sortToggle || !blogPosts) return;
+
+        // Get optional elements
+        const sortIcon = document.getElementById('sortIcon');
+        const noResults = document.getElementById('noResults');
+
+        let isAscending = false;
+
+        function resetLayout() {
+          const blogPostsContainer = document.getElementById('blogPosts');
+          if (!blogPostsContainer) return;
+
+          const posts = Array.from(blogPostsContainer.children);
+          posts.forEach((post, idx) => {
+            post.classList.remove('hidden', 'md:col-span-2');
+            if (idx === 0) {
+              post.classList.add('md:col-span-2');
+            }
+          });
+          noResults?.classList.add('hidden');
+        }
+
+        function sortPosts() {
+          const blogPostsContainer = document.getElementById('blogPosts');
+          if (!blogPostsContainer) return;
+
+          const posts = Array.from(blogPostsContainer.children);
+          const sortedPosts = posts.sort((a, b) => {
+            const dateA = parseInt(a.getAttribute('data-date') || '0');
+            const dateB = parseInt(b.getAttribute('data-date') || '0');
+            return isAscending ? dateA - dateB : dateB - dateA;
+          });
+
+          // Remove all posts
+          posts.forEach(post => post.remove());
+
+          // Add sorted posts back
+          sortedPosts.forEach((post, idx) => {
+            post.classList.remove('md:col-span-2');
+            if (idx === 0) {
+              post.classList.add('md:col-span-2');
+            }
+            blogPostsContainer.appendChild(post);
+          });
+
+          // Update icon rotation
+          if (sortIcon) {
+            sortIcon.style.transform = isAscending ? 'rotate(180deg)' : '';
+          }
+        }
+
+        sortToggle.addEventListener('click', () => {
+          isAscending = !isAscending;
+          sortPosts();
+        });
+
+        searchInput.addEventListener('input', (e) => {
+          const blogPostsContainer = document.getElementById('blogPosts');
+          if (!blogPostsContainer) return;
+
+          const searchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+
+          if (!searchTerm) {
+            resetLayout();
+            return;
+          }
+
+          let hasVisiblePosts = false;
+          let firstVisibleFound = false;
+          const posts = Array.from(blogPostsContainer.children);
+
+          posts.forEach((post) => {
+            const title = post.getAttribute('data-title')?.toLowerCase() || '';
+            const description = post.getAttribute('data-description')?.toLowerCase() || '';
+            const shouldShow = title.includes(searchTerm) || description.includes(searchTerm);
+
+            post.classList.toggle('hidden', !shouldShow);
+            post.classList.remove('md:col-span-2');
+
+            if (shouldShow) {
+              hasVisiblePosts = true;
+              if (!firstVisibleFound) {
+                post.classList.add('md:col-span-2');
+                firstVisibleFound = true;
+              }
+            }
+          });
+
+          noResults?.classList.toggle('hidden', hasVisiblePosts);
+        });
+      });
+    </script>
   </body>
 </html>

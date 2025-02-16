@@ -3,6 +3,7 @@ title: 'In Defence of In Person Work'
 description: 'It is not all bad'
 pubDate: 'Jan 27 2025'
 heroImage: '/images/blog/blog-post-6.jpg'
+pinned: false
 ---
 
 I know, I know, not a popular title. I love remote work as much as the next millennial, but I do think there's something to being there IRL with the people you work with.
@@ -17,9 +18,9 @@ It looked like the error was specifically happening in a different service that 
 
 Sure we're grown adults, but hey, getting fed biweekly's always nice. Unfortunately the only veggie option that day was rabbit food (read salad), but we have ample snacks and drinks.
 
-So anyways, one of our DBAs (let's call them Devin) was in the office today and also heard the magic words. After hitting the critical mass of three, I asked if anyone knew anything about the service I was getting an error from. Devin chimed in, saying he knew what tables the service had access to. So I asked the obvious next question, is anything up with staging? He said not sure, send the J*** over and I'll check.
+So anyways, one of our DBAs (let's call them Devin) was in the office today and also heard the magic words. After hitting the critical mass of three, I asked if anyone knew anything about the service I was getting an error from. Devin chimed in, saying he knew what tables the service had access to. So I asked the obvious next question, is anything up with staging? He said not sure, send the J*&a over and I'll check.
 
-So I sent him a link to the bug over on S****. Turns out new data specific to that service's logic was added last month to every environment but staging. Quick fix, and with that a ticket was filed.
+So I sent him a link to the bug over on S!@#k Turns out new data specific to that service's logic was added last month to every environment but staging. Quick fix, and with that a ticket was filed.
 
 Now sure, I could have reached the same conclusion at home reading the logs. Then querying the DB for the data only to find it missing. So I'd message Devin asking if it should be missing; he'd say no, and a ticket would get filed.
 

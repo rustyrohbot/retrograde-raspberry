@@ -3,6 +3,7 @@ title: 'High Pace Tech Careers'
 description: 'Web dev is like NASCAR'
 pubDate: 'Jan 20 2025'
 heroImage: '/images/blog/blog-post-4.jpg'
+pinned: false
 ---
 
 My neighbor and I recently spent a morning clearing out the dry brush behind our fences. Fun fact, I now have proof that I can not only sharpen my cutlery with a whetstone, but I can also do the same with a machete and file. But that's not the thing we're talking about right now. The rabbithole we're going down is related to our conversation after a full body exercise (who needs a gym membership when you can move logs and branches).

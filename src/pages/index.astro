@@ -1,15 +1,23 @@
 ---
-// src/pages/index.astro
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
-// Get the 4 most recent blog posts
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).slice(0, 4);
+// Get all blog posts
+const allPosts = await getCollection('blog');
+
+// Get pinned posts
+const pinnedPosts = allPosts
+  .filter(post => post.data.pinned)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get recent posts (excluding pinned ones)
+const recentPosts = allPosts
+  .filter(post => !post.data.pinned)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
 ---
 
 <!doctype html>
@@ -28,10 +36,30 @@ const posts = (await getCollection('blog')).sort(
 				</p>
 			</section>
 
+			{pinnedPosts.length > 0 && (
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold mb-4">Featured Posts</h2>
+					<ul class="space-y-4">
+						{pinnedPosts.map((post) => (
+							<li class="flex flex-col sm:flex-row sm:justify-between">
+								<a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">{post.data.title}</a>
+								<time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
+									{post.data.pubDate.toLocaleDateString('en-us', {
+										year: 'numeric',
+										month: 'short',
+										day: 'numeric',
+									})}
+								</time>
+							</li>
+						))}
+					</ul>
+				</section>
+			)}
+
 			<section>
 				<h2 class="text-2xl font-semibold mb-4">Recent Posts</h2>
 				<ul class="space-y-4">
-					{posts.map((post) => (
+					{recentPosts.map((post) => (
 						<li class="flex flex-col sm:flex-row sm:justify-between">
 							<a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">{post.data.title}</a>
 							<time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
