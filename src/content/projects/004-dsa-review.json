@@ -1,0 +1,8 @@
+{
+  "name": "DSA Review",
+  "description": "Little repo for some notes and implementations on common data structures and algorithms",
+  "stack": ["Python"],
+  "url": "https://github.com/rustyrohbot/dsa-review",
+  "status": "ACTIVE",
+  "featured": false
+}

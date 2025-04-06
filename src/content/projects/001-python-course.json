@@ -1,0 +1,8 @@
+{
+  "name": "Python Course v1",
+  "description": "A Python course that guides learners through over engineering a simple CLI application.",
+  "stack": ["Python"],
+  "url": "https://github.com/rustyrohbot/python-course",
+  "status": "ABANDONED",
+  "featured": false
+}

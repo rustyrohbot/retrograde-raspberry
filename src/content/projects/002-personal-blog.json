@@ -1,0 +1,9 @@
+{
+  "name": "Retrograde Raspberry",
+  "description": "The repo for this website, a heavily modified version of the Astro starter blog. I love alliterations so I kept the default project name.",
+  "stack": ["Astro", "Tailwind", "Netlify"],
+  "url": "https://github.com/rustyrohbot/retrograde-raspberry",
+  "status": "ACTIVE",
+  "featured": false
+
+}

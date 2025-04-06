@@ -1,51 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
-const projects = [
-  {
-    name: "Alt Text Generator",
-    description:
-      "A small web app that first prompts for an Anthropic or OpenAI API key, and then allows you to upload images to generate alt text using the selected provider.",
-    stack: ["Go", "Tailwind", "Templ", "HTMX"],
-    url: "https://github.com/rustyrohbot/alt-text-generator",
-    status: "COMPLETE"
-  },
-  {
-    name: "DSA Review",
-    description:
-      "Little repo for some notes and implementations on common data structures and algorithms",
-    stack: ["Python"],
-    url: "https://github.com/rustyrohbot/dsa-review",
-    status: "ACTIVE"
-  },
-  {
-    name: "Reverse ATS",
-    description:
-      "A small web app to track roles at companies you have applied to, in addition to interviews and contacts",
-    stack: ["PHP", "Laravel", "Livewire", "SQLite"],
-    url: "https://github.com/rustyrohbot/reverse-ats",
-    status: "ACTIVE"
-  },
-  {
-    name: "Python Course v1",
-    description:
-      "A Python course that guides learners through over engineering a simple CLI application.",
-    stack: ["Python"],
-    url: "https://github.com/rustyrohbot/python-course",
-    status: "ABANDONED"
-  },
-  {
-    name: "Retrograde Raspberry",
-    description:
-      "The repo for this website, a heavily modified version of the Astro starter blog. I love alliterations so I kept the default project name.",
-    stack: ["Astro", "Tailwind", "Netlify"],
-    url: "https://github.com/rustyrohbot/retrograde-raspberry",
-    status: "ACTIVE"
-  }
-];
+// Fetch all projects from the collection
+const projects = await getCollection('projects');
 ---
 
 <!doctype html>
@@ -60,11 +21,11 @@ const projects = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => (
           <ProjectCard
-            name={project.name}
-            description={project.description}
-            stack={project.stack}
-            url={project.url}
-            status={project.status}
+            name={project.data.name}
+            description={project.data.description}
+            stack={project.data.stack}
+            url={project.data.url}
+            status={project.data.status}
           />
         ))}
       </div>
