@@ -4,6 +4,7 @@ description: 'It is not all bad'
 pubDate: 'Jan 27 2025'
 heroImage: '/images/blog/blog-post-6.jpg'
 pinned: false
+tags: ['rambling']
 ---
 
 I know, I know, not a popular title. I love remote work as much as the next millennial, but I do think there's something to being there IRL with the people you work with.

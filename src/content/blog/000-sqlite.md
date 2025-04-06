@@ -4,6 +4,7 @@ description: 'Brief piece on SQLite'
 pubDate: 'Jul 22 2024'
 heroImage: '/images/blog/blog-post-0.jpg'
 pinned: false
+tags: ['sqlite']
 ---
 
 Many of y’all may be familiar with [SQLite](https://www.sqlite.org/). For some of you, it is that little file you used in school when learning about databases, maybe their internal data structures, and how to query them. For others, it might be that tiny tool you used to get that hackathon project up and running that you will definitely get back to and finish.

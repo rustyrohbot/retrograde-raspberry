@@ -4,6 +4,7 @@ description: 'The most important technology in the modern office'
 pubDate: 'Feb 21 2025'
 heroImage: '/images/blog/blog-post-8.jpg'
 pinned: false
+tags: ['rambling']
 ---
 
 I was in the office the other week, and was enjoying the biweekly lunch my employer provides. I currently work in the intersection of software, insurance, and lending. Now you'd think it'd be pretty far away from hype, but apparently generative AI and large language models are a hot topic to talk about while eating free pizza.

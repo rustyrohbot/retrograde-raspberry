@@ -4,6 +4,7 @@ description: 'Leveraging existing tech'
 pubDate: 'Jan 22 2025'
 heroImage: '/images/blog/blog-post-5.jpg'
 pinned: false
+tags: ['rambling']
 ---
 
 This one is going to be all over the place, don't say I didn't warn you. We start with the story of my late grandfather. He was born in a village in the state of Gujarat, where for much of his life, it did not have widespread indoor plumbing and electricity. His brothers worked in the farms so he could get a better education. After being the first in his family to finish high school, he went on to get a Bachelor’s in physics. Eventually he found himself in Louisville, Kentucky where he studied mechanical engineering, then at Bucknell where he finished his Master's. Afterwards, he worked in Tuckerton, New Jersey. Only to make full circle back to India, something about serving in the freedom movement as a high schooler and wanting to bring his new knowledge back home. Not only that, dude took a boat back via Europe and Africa. He somehow managed to be a figurative FOB in the States, and a literal FOB back in India.

@@ -4,6 +4,7 @@ description: 'Story of becoming a software eng'
 pubDate: 'Aug 18 2024'
 heroImage: '/images/blog/blog-post-1.jpg'
 pinned: true
+tags: ['rambling']
 ---
 
 We're going to start with the ending to this story, and I'll fill in the details as we continue down the page. I've "professionally" been a full time software engineer since the summer of 2017. In that time, I've worked across: the largest custodial bank in the world; a robotics company that has been trying to automate material movement; a large multi-billion dollar software corporation; and a financial technology company. After the robotics firm I also started moonlighting as part time instructor for a software developer bootcamp.  So how did I get here?

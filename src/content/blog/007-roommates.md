@@ -4,6 +4,7 @@ description: 'How to lose a couple thousand bucks'
 pubDate: 'Feb 15 2025'
 heroImage: '/images/blog/blog-post-7.jpg'
 pinned: false
+tags: ['rambling']
 ---
 
 So far between actual roommates, their partners who decide to move in unannounced, and their friends who colonized the living room, I've had just shy of 20. The last one scammed me out of at least $4500.

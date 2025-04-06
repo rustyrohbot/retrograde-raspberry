@@ -10,6 +10,9 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Extract all unique tags from posts
+const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
 ---
 
 <!doctype html>
@@ -21,6 +24,26 @@ const posts = (await getCollection('blog')).sort(
     <Header />
     <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
       <h1 class="text-4xl font-bold text-center">Blog</h1>
+
+      <!-- Tags Filter -->
+      {allTags.length > 0 && (
+        <div class="flex flex-wrap justify-center gap-2 mb-6">
+          <button
+            class="tag-filter px-3 py-1 rounded-full text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+            data-tag=""
+          >
+            All
+          </button>
+          {allTags.map(tag => (
+            <button
+              class="tag-filter px-3 py-1 rounded-full text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+              data-tag={tag}
+            >
+              #{tag}
+            </button>
+          ))}
+        </div>
+      )}
 
       <!-- Search and Sort Section -->
       <div class="w-full mb-8">
@@ -63,6 +86,7 @@ const posts = (await getCollection('blog')).sort(
             class={`blog-post ${index === 0 ? "md:col-span-2" : ""}`}
             data-title={post.data.title}
             data-description={post.data.description}
+            data-tags={post.data.tags?.join(',')}
             data-index={index}
             data-date={post.data.pubDate.valueOf()}
           >
@@ -72,6 +96,7 @@ const posts = (await getCollection('blog')).sort(
               link={`/blog/${post.id}/`}
               imageSrc={post.data.heroImage}
               isLarge={index === 0}
+              tags={post.data.tags}
             />
           </div>
         ))}
@@ -86,18 +111,19 @@ const posts = (await getCollection('blog')).sort(
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('searchInput');
+        // Use proper type casting for input elements
+        const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
         const sortToggle = document.getElementById('sortToggle');
         const blogPosts = document.getElementById('blogPosts');
-
-        // Return early if required elements don't exist
-        if (!searchInput || !sortToggle || !blogPosts) return;
-
-        // Get optional elements
-        const sortIcon = document.getElementById('sortIcon');
+        const tagFilters = document.querySelectorAll('.tag-filter');
         const noResults = document.getElementById('noResults');
+        const sortIcon = document.getElementById('sortIcon');
+
+        // Return early if blog posts container doesn't exist
+        if (!blogPosts) return;
 
         let isAscending = false;
+        let currentTag = '';
 
         function resetLayout() {
           const blogPostsContainer = document.getElementById('blogPosts');
@@ -110,7 +136,7 @@ const posts = (await getCollection('blog')).sort(
               post.classList.add('md:col-span-2');
             }
           });
-          noResults?.classList.add('hidden');
+          if (noResults) noResults.classList.add('hidden');
         }
 
         function sortPosts() {
@@ -142,21 +168,12 @@ const posts = (await getCollection('blog')).sort(
           }
         }
 
-        sortToggle.addEventListener('click', () => {
-          isAscending = !isAscending;
-          sortPosts();
-        });
+        function filterPosts() {
+          // Get search term with proper null check
+          const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-        searchInput.addEventListener('input', (e) => {
           const blogPostsContainer = document.getElementById('blogPosts');
           if (!blogPostsContainer) return;
-
-          const searchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
-
-          if (!searchTerm) {
-            resetLayout();
-            return;
-          }
 
           let hasVisiblePosts = false;
           let firstVisibleFound = false;
@@ -165,7 +182,17 @@ const posts = (await getCollection('blog')).sort(
           posts.forEach((post) => {
             const title = post.getAttribute('data-title')?.toLowerCase() || '';
             const description = post.getAttribute('data-description')?.toLowerCase() || '';
-            const shouldShow = title.includes(searchTerm) || description.includes(searchTerm);
+            const tags = post.getAttribute('data-tags')?.toLowerCase() || '';
+
+            // Check if post matches both search term and tag filter
+            const matchesSearch = !searchTerm ||
+              title.includes(searchTerm) ||
+              description.includes(searchTerm) ||
+              tags.includes(searchTerm);
+
+            const matchesTag = !currentTag || (tags && tags.split(',').includes(currentTag));
+
+            const shouldShow = matchesSearch && matchesTag;
 
             post.classList.toggle('hidden', !shouldShow);
             post.classList.remove('md:col-span-2');
@@ -179,8 +206,49 @@ const posts = (await getCollection('blog')).sort(
             }
           });
 
-          noResults?.classList.toggle('hidden', hasVisiblePosts);
+          if (noResults) {
+            noResults.classList.toggle('hidden', hasVisiblePosts);
+          }
+        }
+
+        // Update tag filter button styles
+        function updateTagButtons() {
+          tagFilters.forEach(btn => {
+            const tag = btn.getAttribute('data-tag');
+            if (tag === currentTag) {
+              btn.classList.remove('bg-gray-200', 'text-gray-700');
+              btn.classList.add('bg-blue-500', 'text-white');
+            } else {
+              btn.classList.remove('bg-blue-500', 'text-white');
+              btn.classList.add('bg-gray-200', 'text-gray-700');
+            }
+          });
+        }
+
+        // Add event listeners
+        if (sortToggle) {
+          sortToggle.addEventListener('click', () => {
+            isAscending = !isAscending;
+            sortPosts();
+          });
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener('input', () => {
+            filterPosts();
+          });
+        }
+
+        tagFilters.forEach(btn => {
+          btn.addEventListener('click', () => {
+            currentTag = btn.getAttribute('data-tag') || '';
+            updateTagButtons();
+            filterPosts();
+          });
         });
+
+        // Initialize tag buttons
+        updateTagButtons();
       });
     </script>
   </body>

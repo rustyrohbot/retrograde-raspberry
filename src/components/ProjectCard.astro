@@ -5,14 +5,40 @@ export interface ProjectCardProps {
   description: string;
   stack: string[];
   url: string;
+  status?: string;
 }
 
-const { name, description, stack, url } = Astro.props;
+const { name, description, stack, url, status } = Astro.props;
+
+// Define status color based on status value
+const getStatusColor = (status?: string) => {
+  if (!status) return "";
+
+  switch(status.toUpperCase()) {
+    case "COMPLETE":
+      return "bg-green-200 text-green-800";
+    case "ABANDONED":
+      return "bg-red-200 text-red-800";
+    case "ACTIVE":
+      return "bg-blue-200 text-blue-800";
+    default:
+      return "bg-gray-200 text-gray-800";
+  }
+};
+
+const statusColor = getStatusColor(status);
 ---
 
 <div class="rounded-lg shadow-lg overflow-hidden bg-white p-4">
   <a href={url} target="_blank" rel="noopener noreferrer" class="block">
-    <h2 class="text-lg font-bold text-blue-600 hover:underline">{name}</h2>
+    <div class="flex justify-between items-start">
+      <h2 class="text-lg font-bold text-blue-600 hover:underline">{name}</h2>
+      {status && (
+        <span class={`text-xs font-semibold rounded-full px-2 py-1 ${statusColor}`}>
+          {status}
+        </span>
+      )}
+    </div>
     <p class="text-sm text-gray-600 mt-2">{description}</p>
     <div class="mt-4 flex flex-wrap gap-2">
       {stack.map((tech: string) => (

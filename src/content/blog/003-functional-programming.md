@@ -4,6 +4,7 @@ description: 'Why I chose gleam'
 pubDate: 'Jan 18 2025'
 heroImage: '/images/blog/blog-post-3.jpg'
 pinned: true
+tags: ['rambling']
 ---
 
 This entire article could've been better for SEO and written as a listicle, but I like superfluous prose, and more importantly, this is my corner of the internet, so I'm doing it my way. In 2025 I want to learn functional programming. I very briefly used [Scala](https://www.scala-lang.org/), years ago in a course during undergrad to run map-reduce on a bunch of text. And it never quite clicked. Meanwhile, throughout my career, I've seen more and more of my beloved boomer loops in Java get replaced by the streams api. I'm not the biggest fan, I think most of the time it makes it harder to quickly understand. But I'm open to being wrong, so I set a goal to learn how to think functionally, because at the moment, iterative approaches are more intuitive.
@@ -27,3 +28,5 @@ For a while I thought about Elixir again. But I wanted to be greedy and I want t
 And now like any goal, let's see if by next January in 2026 I actually get it done.
 
 Edit: Feb 15 2025, I've read through all the docs, iterating through a list without a boomer loop still feels kinda weird, it's like writing with the opposite hand. But overall, I like writing the language. Also, the code sandbox with preloaded examples is top notch.
+
+Edit: March 30, 2025, This project is going on the backburner. I'm still interested in building my functional programming muscle, but it's not my higheste priority.

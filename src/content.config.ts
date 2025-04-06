@@ -13,7 +13,7 @@ const blog = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
 		pinned: z.boolean().optional().default(false), // Add pinned field
-
+		tags: z.array(z.string()).optional().default([]), // Add tags field
 	}),
 });
 

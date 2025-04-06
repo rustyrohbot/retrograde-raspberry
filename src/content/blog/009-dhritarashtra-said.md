@@ -3,6 +3,7 @@ title: 'Dhritarashtra Uvacha'
 description: 'The blind king said'
 pubDate: 'Feb 23 2025'
 heroImage: '/images/blog/blog-post-9.jpg'
+tags: ['faith']
 ---
 
 I've read the Bhagavad Gita some double-digit number of times across a variety of translators, I can read Sanskrit, but I go through a mechanical process of converting it to English to understand it, so I lean on authors who've already done the effort. The three I typically recommend are: [Swami Dayananda Saraswati](https://avrpt.com/sanskrit-bhagavadgita.htm) (not an affiliate link); the pocket edition from Srinivas Fine Arts; and Sri Aurobindo's translation with commentary, [Bhagavad Gita And It's Message](https://www.amazon.com/Bhagavad-Gita-Its-Message-Aurobindo/dp/0941524787/)(again, not an affiliate link). Swami Chinmayananda's translation with commentary, [The Holy Geeta](https://eshop.chinmayamission.com/product/the-holy-geeta-1) wasn't bad either, I just preferred the specific three I mentioned. When I do a cover to cover read, I like to do it in 1 day if I'm up for a challenge, and 7 days if I want to take my time, and these translations work well with both timelines. It's only 700 verses, it's not that long.

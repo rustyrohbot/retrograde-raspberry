@@ -5,11 +5,12 @@ export interface BlogCardProps {
   pubDate: Date;
   link: string;
   imageSrc: string;
+  tags?: string[];
   isLarge?: boolean;
   class?: string;
 }
 
-const { title, pubDate, link, imageSrc, isLarge = false, class: className = '' } = Astro.props;
+const { title, pubDate, link, imageSrc, tags = [], isLarge = false, class: className = '' } = Astro.props;
 ---
 
 <div class={`group relative rounded-lg shadow-lg overflow-hidden h-60 md:h-96 flex flex-col ${className}`}>
@@ -26,6 +27,22 @@ const { title, pubDate, link, imageSrc, isLarge = false, class: className = '' }
         class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent text-white p-4"
       >
         <h2 class="font-bold text-lg sm:text-xl">{title}</h2>
+
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-1 mt-1.5 mb-1">
+            {tags.slice(0, 3).map((tag) => (
+              <span class="text-xs px-2 py-0.5 bg-black bg-opacity-30 rounded-full">
+                #{tag}
+              </span>
+            ))}
+            {tags.length > 3 && (
+              <span class="text-xs px-2 py-0.5 bg-black bg-opacity-30 rounded-full">
+                +{tags.length - 3}
+              </span>
+            )}
+          </div>
+        )}
+
         <time
           datetime={pubDate.toISOString()}
           class="block mt-1 text-sm text-gray-300"
