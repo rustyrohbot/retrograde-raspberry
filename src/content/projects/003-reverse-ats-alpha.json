@@ -1,0 +1,8 @@
+{
+  "name": "Reverse ATS - ALPHA",
+  "description": "A system to organize and track a job hunt",
+  "stack": ["Excel", "Python", "Livewire", "SQLite"],
+  "url": "https://github.com/rustyrohbot/reverse-ats-alpha",
+  "status": "COMPLETE",
+  "featured": false
+}

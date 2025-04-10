@@ -1,8 +1,0 @@
-{
-  "name": "Reverse ATS",
-  "description": "A small web app to track roles at companies you have applied to, in addition to interviews and contacts",
-  "stack": ["PHP", "Laravel", "Livewire", "SQLite"],
-  "url": "https://github.com/rustyrohbot/reverse-ats",
-  "status": "ACTIVE",
-  "featured": false
-}
