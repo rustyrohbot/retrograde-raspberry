@@ -4,5 +4,5 @@
   "stack": ["Go", "Tailwind", "Templ", "HTMX"],
   "url": "https://github.com/rustyrohbot/alt-text-generator",
   "status": "COMPLETE",
-  "featured": false
+  "featured": true
 }

@@ -4,5 +4,5 @@
   "stack": ["Excel", "Python", "Livewire", "SQLite"],
   "url": "https://github.com/rustyrohbot/reverse-ats-alpha",
   "status": "COMPLETE",
-  "featured": false
+  "featured": true
 }
