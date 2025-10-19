@@ -1,8 +1,0 @@
-{
-  "name": "Reverse ATS - GAMMA",
-  "description": "CLI application to display information around a job hunt",
-  "stack": ["Go", "SQLite"],
-  "url": "https://github.com/rustyrohbot/reverse-ats-gamma",
-  "status": "ACTIVE",
-  "featured": true
-}

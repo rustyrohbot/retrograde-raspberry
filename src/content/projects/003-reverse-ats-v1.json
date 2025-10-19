@@ -1,8 +1,8 @@
 {
-  "name": "Reverse ATS - ALPHA",
+  "name": "Reverse ATS - v1 ",
   "description": "Organizing applying and interviewing for roles with a spreadsheet,",
   "stack": ["Excel"],
-  "url": "https://github.com/rustyrohbot/reverse-ats-alpha",
+  "url": "https://github.com/rustyrohbot/reverse-ats-v1",
   "status": "COMPLETE",
   "featured": false
 }

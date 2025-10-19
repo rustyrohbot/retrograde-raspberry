@@ -1,0 +1,8 @@
+{
+  "name": "Reverse ATS - v3",
+  "description": "CLI application to display information around a job hunt",
+  "stack": ["Go", "SQLite"],
+  "url": "https://github.com/rustyrohbot/reverse-ats-v3",
+  "status": "ABANDONED",
+  "featured": false
+}

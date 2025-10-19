@@ -3,7 +3,7 @@ title: 'In Defence of In Person Work'
 description: 'It is not all bad'
 pubDate: 'Jan 27 2025'
 heroImage: '/images/blog/blog-post-6.jpg'
-pinned: false
+pinned: true
 tags: ['rambling']
 ---
 

@@ -3,7 +3,7 @@ title: 'I Want To Learn Functional Programming'
 description: 'Why I chose gleam'
 pubDate: 'Jan 18 2025'
 heroImage: '/images/blog/blog-post-3.jpg'
-pinned: true
+pinned: false
 tags: ['rambling']
 ---
 
