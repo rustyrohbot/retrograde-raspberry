@@ -1,8 +1,0 @@
-{
-  "name": "Reverse ATS - v2",
-  "description": "Migrating the job hunt speadsheet to a SQLite database",
-  "stack": ["Excel", "Python", "pandas", "SQLite"],
-  "url": "https://github.com/rustyrohbot/reverse-ats-v2",
-  "status": "COMPLETE",
-  "featured": false
-}
