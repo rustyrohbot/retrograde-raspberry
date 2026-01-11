@@ -1,8 +1,0 @@
-{
-  "name": "Reverse ATS - v4",
-  "description": "A simple web application to track a job hunt. Also an excuse to play with Claude Code",
-  "stack": ["Go", "PocketBase", "htmx", "Templ", "Tailwind"],
-  "url": "https://github.com/rustyrohbot/reverse-ats-v4",
-  "status": "ACTIVE",
-  "featured": true
-}

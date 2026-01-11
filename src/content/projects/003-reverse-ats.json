@@ -1,0 +1,8 @@
+{
+  "name": "Reverse ATS ",
+  "description": "Web app to better organize and visualize job hunting,",
+  "stack": ["HTMX, Tailwind, Templ, Go, Pocketbase"],
+  "url": "https://github.com/rustyrohbot/reverse-ats-v4",
+  "status": "COMPLETE",
+  "featured": true
+}

@@ -1,8 +1,0 @@
-{
-  "name": "Reverse ATS - v4",
-  "description": "A simple web application to track how many days you're in the office. Also an excuse to play with OpenCode",
-  "stack": ["Go", "SQLite", "goose", "sqlc", "htmx", "Tailwind"],
-  "url": "https://github.com/rustyrohbot/attendence-counter",
-  "status": "COMPLETE",
-  "featured": false
-}

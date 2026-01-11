@@ -1,108 +1,154 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
 
 // Get all blog posts
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection("blog");
 
 // Get pinned posts
 const pinnedPosts = allPosts
-  .filter(post => post.data.pinned)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    .filter((post) => post.data.pinned)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // Get recent posts (excluding pinned ones)
 const recentPosts = allPosts
-  .filter(post => !post.data.pinned)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 4);
+    .filter((post) => !post.data.pinned)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 4);
 
 // Get featured projects
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection("projects");
 const featuredProjects = allProjects
-  .filter(project => project.data.featured)
-  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+    .filter((project) => project.data.featured)
+    .sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
 
 <!doctype html>
 <html lang="en" class="h-full">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body class="flex flex-col min-h-full m-0 bg-gray-50">
-		<Header />
-		<main class="flex-grow max-w-3xl mx-auto px-4 py-8 w-full">
-			<h1 class="text-4xl font-bold mb-8">Welcome to My Blog</h1>
-			<section class="mb-12">
-				<h2 class="text-2xl font-semibold mb-4">About Me</h2>
-				<p class="text-lg">
-					Howdy and welcome to my corner of the internet! Not sure what you'll find here but it's something.
-				</p>
-			</section>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body class="flex flex-col min-h-full m-0 bg-gray-50">
+        <Header />
+        <main class="flex-grow max-w-3xl mx-auto px-4 py-8 w-full">
+            <h1 class="text-4xl font-bold mb-8">Welcome to My Blog</h1>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+                <p class="text-lg">
+                    Howdy and welcome to my corner of the internet! Not sure
+                    what you'll find here but it's something.
+                </p>
+            </section>
 
-			{pinnedPosts.length > 0 && (
-				<section class="mb-8">
-					<h2 class="text-2xl font-semibold mb-4">Featured Posts</h2>
-					<ul class="space-y-4">
-						{pinnedPosts.map((post) => (
-							<li class="flex flex-col sm:flex-row sm:justify-between">
-								<a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">{post.data.title}</a>
-								<time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
-									{post.data.pubDate.toLocaleDateString('en-us', {
-										year: 'numeric',
-										month: 'short',
-										day: 'numeric',
-									})}
-								</time>
-							</li>
-						))}
-					</ul>
-				</section>
-			)}
+            {
+                pinnedPosts.length > 0 && (
+                    <section class="mb-8">
+                        <h2 class="text-2xl font-semibold mb-4">
+                            Featured Posts
+                        </h2>
+                        <ul class="space-y-4">
+                            {pinnedPosts.map((post) => (
+                                <li class="flex flex-col sm:flex-row sm:justify-between">
+                                    <a
+                                        href={`/blog/${post.id}/`}
+                                        class="text-blue-600 hover:underline"
+                                    >
+                                        {post.data.title}
+                                    </a>
+                                    <time
+                                        datetime={post.data.pubDate.toISOString()}
+                                        class="text-sm text-gray-500"
+                                    >
+                                        {post.data.pubDate.toLocaleDateString(
+                                            "en-us",
+                                            {
+                                                year: "numeric",
+                                                month: "short",
+                                                day: "numeric",
+                                            },
+                                        )}
+                                    </time>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )
+            }
 
-			{featuredProjects.length > 0 && (
-				<section class="mb-8">
-					<h2 class="text-2xl font-semibold mb-4">Featured PRojects</h2>
-					<ul class="space-y-4">
-						{featuredProjects.map((project) => (
-							<li class="flex flex-col sm:flex-row sm:justify-between">
-								<a href={project.data.url} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">{project.data.name}</a>
-								{project.data.status && (
-									<span class={`text-xs px-2 py-1 rounded-full ${
-										project.data.status === 'COMPLETE' ? 'bg-green-100 text-green-800' :
-										project.data.status === 'ACTIVE' ? 'bg-blue-100 text-blue-800' :
-										'bg-red-100 text-red-800'
-									}`}>
-										{project.data.status}
-									</span>
-								)}
-							</li>
-						))}
-					</ul>
-				</section>
-			)}
+            {
+                featuredProjects.length > 0 && (
+                    <section class="mb-8">
+                        <h2 class="text-2xl font-semibold mb-4">
+                            Featured Projects
+                        </h2>
+                        <ul class="space-y-4">
+                            {featuredProjects.map((project) => (
+                                <li class="flex flex-col sm:flex-row sm:justify-between">
+                                    <a
+                                        href={project.data.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-blue-600 hover:underline"
+                                    >
+                                        {project.data.name}
+                                    </a>
+                                    {project.data.status && (
+                                        <span
+                                            class={`text-xs px-2 py-1 rounded-full ${
+                                                project.data.status ===
+                                                "COMPLETE"
+                                                    ? "bg-green-100 text-green-800"
+                                                    : project.data.status ===
+                                                        "ACTIVE"
+                                                      ? "bg-blue-100 text-blue-800"
+                                                      : "bg-red-100 text-red-800"
+                                            }`}
+                                        >
+                                            {project.data.status}
+                                        </span>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )
+            }
 
-			<section class="mb-8">
-				<h2 class="text-2xl font-semibold mb-4">Recent Posts</h2>
-				<ul class="space-y-4">
-					{recentPosts.map((post) => (
-						<li class="flex flex-col sm:flex-row sm:justify-between">
-							<a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline">{post.data.title}</a>
-							<time datetime={post.data.pubDate.toISOString()} class="text-sm text-gray-500">
-								{post.data.pubDate.toLocaleDateString('en-us', {
-									year: 'numeric',
-									month: 'short',
-									day: 'numeric',
-								})}
-							</time>
-						</li>
-					))}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Recent Posts</h2>
+                <ul class="space-y-4">
+                    {
+                        recentPosts.map((post) => (
+                            <li class="flex flex-col sm:flex-row sm:justify-between">
+                                <a
+                                    href={`/blog/${post.id}/`}
+                                    class="text-blue-600 hover:underline"
+                                >
+                                    {post.data.title}
+                                </a>
+                                <time
+                                    datetime={post.data.pubDate.toISOString()}
+                                    class="text-sm text-gray-500"
+                                >
+                                    {post.data.pubDate.toLocaleDateString(
+                                        "en-us",
+                                        {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                        },
+                                    )}
+                                </time>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </section>
+        </main>
+        <Footer />
+    </body>
 </html>

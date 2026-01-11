@@ -1,0 +1,8 @@
+{
+  "name": "Docs Chatbot",
+  "description": "Small chatbot that provides RAG search on a set of documents using a locally running LLM",
+  "stack": ["HTMX, Tailwind, Deno, TypeScript, Ollama, IBM Granite"],
+  "url": "https://github.com/rustyrohbot/docs-chatbot",
+  "status": "COMPLETE",
+  "featured": true
+}

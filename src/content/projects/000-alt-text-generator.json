@@ -1,8 +1,8 @@
 {
-  "name": "Alt Text Generator - v1",
+  "name": "Alt Text Generator",
   "description": "A small web app that first prompts for an Anthropic or OpenAI API key, and then allows you to upload images to generate alt text using the selected provider.",
   "stack": ["Go", "Tailwind", "Templ", "htmx"],
   "url": "https://github.com/rustyrohbot/alt-text-generator-v1",
   "status": "COMPLETE",
-  "featured": true
+  "featured": false
 }
