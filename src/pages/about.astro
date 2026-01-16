@@ -1,48 +1,64 @@
 ---
 // src/pages/about.astro
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { ABOUT_PAGE_TITLE, ABOUT_PAGE_DESCRIPTION } from '../consts';
-import { Image } from 'astro:assets';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { ABOUT_PAGE_TITLE, ABOUT_PAGE_DESCRIPTION } from "../consts";
+import { Image } from "astro:assets";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={ABOUT_PAGE_TITLE} description={ABOUT_PAGE_DESCRIPTION} />
-	</head>
-	<body class="flex flex-col min-h-screen">
-		<Header />
-		<main class="flex-grow">
-			<div class="max-w-3xl mx-auto px-4 py-8 w-full">
-				<h1 class="text-3xl sm:text-4xl font-bold mb-8 text-center">About Me</h1>
-				<div class="flex justify-center mb-8">
-					<Image
-					src="/images/headshot.jpg"
-					alt="My headshot"
-					width={256}
-					height={256}
-					class="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover"
-				  />				</div>
-				<div class="space-y-4">
-					<p class="text-sm sm:text-base">
-						Howdy! I'm a software engineer professionally and a tech enthusiast by hobby. Once upon a time y'all could find me in Pittsburgh, but nowadays I'm based out of Austin.
-						I've worked across a variety of industries, and I love teaching people how to write code. I still remember how magical it felt the first time programing clicked for me,
-						and I enjoy being able to facilitate a similar experience for others.
-					</p>
-					<p class="text-sm sm:text-base">
-						I don't really have any goals or plans for this blog. I like writing, and I'm not particularly active on social media.
-						So this blog my space (not MySpace) to shout into the void of the internet.
-					</p>
-					<p class="text-sm sm:text-base">
-						Outside of technology, I enjoy many things, especially lists, so let me make just that:
-						cooking, cookware, cutlury; cleaning; coffee; fermenting kombucha; comic books; board games; video games; world building and fantasy settings;
-						reading; history; spirituality; walking; hiking; photography
-					</p>
-				</div>
-			</div>
-		</main>
-		<Footer />
-	</body>
+    <head>
+        <BaseHead
+            title={ABOUT_PAGE_TITLE}
+            description={ABOUT_PAGE_DESCRIPTION}
+        />
+    </head>
+    <body class="flex flex-col min-h-screen">
+        <Header />
+        <main class="flex-grow">
+            <div class="max-w-3xl mx-auto px-4 py-8 w-full">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-8 text-center">
+                    About Me
+                </h1>
+                <div class="flex justify-center mb-8">
+                    <Image
+                        src="/images/headshot.jpg"
+                        alt="My headshot"
+                        width={256}
+                        height={256}
+                        class="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover"
+                    />
+                </div>
+                <div class="space-y-4">
+                    <p class="text-sm sm:text-base">
+                        Howdy! I'm a software engineer professionally and a tech
+                        enthusiast by hobby. Once upon a time y'all could find
+                        me in Pittsburgh, but nowadays I'm based out of Texas.
+                        I've worked across a variety of industries, and I love
+                        teaching people how to write code. I still remember how
+                        magical it felt the first time programing clicked for
+                        me, and I enjoy being able to facilitate a similar
+                        experience for others.
+                    </p>
+                    <p class="text-sm sm:text-base">
+                        I don't really have any goals or plans for this blog. I
+                        like writing, and I'm not particularly active on social
+                        media. So this blog my space (not MySpace) to shout into
+                        the void of the internet.
+                    </p>
+                    <p class="text-sm sm:text-base">
+                        Outside of technology, I enjoy many things, especially
+                        lists, so let me make just that: cooking, cookware,
+                        cutlury; cleaning; coffee; fermenting kombucha; comic
+                        books; board games; video games; world building and
+                        fantasy settings; reading; history; spirituality;
+                        walking; hiking; photography
+                    </p>
+                </div>
+            </div>
+        </main>
+        <Footer />
+    </body>
 </html>

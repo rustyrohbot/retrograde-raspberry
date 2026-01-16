@@ -1,96 +1,110 @@
 ---
 // src/pages/contact.astro
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <BaseHead title="Contact" description="Form to contact me." />
-  </head>
-  <body class="flex flex-col min-h-screen bg-gray-50">
-    <Header />
-    <main class="flex-grow flex items-center justify-center px-4 py-12">
-      <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md border border-gray-300">
-        <h1 class="text-4xl font-bold text-center mb-8">Contact Us</h1>
-        <form
-          data-netlify="true"
-          name="contact"
-          method="POST"
-          action="/thank-you"
-          class="space-y-6"
-        >
-          <!-- Netlify Hidden Input -->
-          <input type="hidden" name="form-name" value="contact" />
-
-          <!-- Name (Required) -->
-          <div>
-            <label for="name" class="block text-lg font-medium text-gray-800">
-              Name <span class="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
-            />
-          </div>
-
-          <!-- Email (Optional) -->
-          <div>
-            <label for="email" class="block text-lg font-medium text-gray-800">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
-            />
-          </div>
-
-          <!-- Phone (Optional) -->
-          <div>
-            <label for="phone" class="block text-lg font-medium text-gray-800">
-              Phone
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
-            />
-          </div>
-
-          <!-- Message (Required) -->
-          <div>
-            <label for="message" class="block text-lg font-medium text-gray-800">
-              Message <span class="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="6"
-              class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
-            ></textarea>
-          </div>
-
-          <!-- Submit Button -->
-          <div>
-            <button
-              type="submit"
-              class="w-full inline-flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    <head>
+        <BaseHead title="Contact" description="Form to contact me." />
+    </head>
+    <body class="flex flex-col min-h-screen bg-gray-50">
+        <Header />
+        <main class="flex-grow flex items-center justify-center px-4 py-12">
+            <div
+                class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md border border-gray-300"
             >
-              Send Message
-            </button>
-          </div>
-        </form>
-      </div>
-    </main>
-    <Footer />
-  </body>
+                <h1 class="text-4xl font-bold text-center mb-8">Contact Us</h1>
+                <form
+                    data-netlify="true"
+                    name="contact"
+                    method="POST"
+                    action="/thank-you"
+                    class="space-y-6"
+                >
+                    <!-- Netlify Hidden Input -->
+                    <input type="hidden" name="form-name" value="contact" />
+
+                    <!-- Name (Required) -->
+                    <div>
+                        <label
+                            for="name"
+                            class="block text-lg font-medium text-gray-800"
+                        >
+                            Name <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
+                        />
+                    </div>
+
+                    <!-- Email (Optional) -->
+                    <div>
+                        <label
+                            for="email"
+                            class="block text-lg font-medium text-gray-800"
+                        >
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
+                        />
+                    </div>
+
+                    <!-- Phone (Optional) -->
+                    <div>
+                        <label
+                            for="phone"
+                            class="block text-lg font-medium text-gray-800"
+                        >
+                            Phone
+                        </label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
+                        />
+                    </div>
+
+                    <!-- Message (Required) -->
+                    <div>
+                        <label
+                            for="message"
+                            class="block text-lg font-medium text-gray-800"
+                        >
+                            Message <span class="text-red-500">*</span>
+                        </label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            required
+                            rows="6"
+                            class="mt-2 block w-full rounded-md border border-gray-400 bg-gray-100 focus:border-indigo-500 focus:ring-indigo-500 text-lg"
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button
+                            type="submit"
+                            class="w-full inline-flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <Footer />
+    </body>
 </html>

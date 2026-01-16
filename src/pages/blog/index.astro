@@ -1,255 +1,303 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import BlogCard from '../../components/BlogCard.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
 
 // Fetch and sort blog posts
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 // Extract all unique tags from posts
-const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
+const allTags = [
+    ...new Set(posts.flatMap((post) => post.data.tags || [])),
+].sort();
 ---
 
 <!doctype html>
 <html lang="en" class="h-full">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body class="flex flex-col min-h-full m-0 bg-gray-50">
-    <Header />
-    <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
-      <h1 class="text-4xl font-bold text-center">Blog</h1>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body class="flex flex-col min-h-full m-0 bg-gray-50">
+        <Header />
+        <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full space-y-6">
+            <h1 class="text-4xl font-bold text-center">Blog</h1>
 
-      <!-- Tags Filter -->
-      {allTags.length > 0 && (
-        <div class="flex flex-wrap justify-center gap-2 mb-6">
-          <button
-            class="tag-filter px-3 py-1 rounded-full text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
-            data-tag=""
-          >
-            All
-          </button>
-          {allTags.map(tag => (
-            <button
-              class="tag-filter px-3 py-1 rounded-full text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
-              data-tag={tag}
-            >
-              #{tag}
-            </button>
-          ))}
-        </div>
-      )}
+            <!-- Tags Filter -->
+            {
+                allTags.length > 0 && (
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <button
+                            class="tag-filter px-3 py-1 rounded-full text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+                            data-tag=""
+                        >
+                            All
+                        </button>
+                        {allTags.map((tag) => (
+                            <button
+                                class="tag-filter px-3 py-1 rounded-full text-sm bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+                                data-tag={tag}
+                            >
+                                #{tag}
+                            </button>
+                        ))}
+                    </div>
+                )
+            }
 
-      <!-- Search and Sort Section -->
-      <div class="w-full mb-8">
-        <div class="flex gap-2">
-          <div class="relative flex-grow">
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Search posts..."
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+            <!-- Search and Sort Section -->
+            <div class="w-full mb-8">
+                <div class="flex gap-2">
+                    <div class="relative flex-grow">
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search posts..."
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                        <div
+                            class="absolute inset-y-0 right-0 flex items-center pr-3"
+                        >
+                            <svg
+                                class="w-5 h-5 text-gray-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <button
+                        id="sortToggle"
+                        class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 group"
+                        title="Toggle sort order"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-400 group-hover:text-gray-500 transition-transform duration-200"
+                            id="sortIcon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-          </div>
-          <button
-            id="sortToggle"
-            class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 group"
-            title="Toggle sort order"
-          >
-            <svg
-              class="w-5 h-5 text-gray-400 group-hover:text-gray-500 transition-transform duration-200"
-              id="sortIcon"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
-            </svg>
-          </button>
-        </div>
-      </div>
 
-      <!-- Blog Posts Container -->
-      <div id="blogPosts" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {posts.map((post, index) => (
-          <div
-            class={`blog-post ${index === 0 ? "md:col-span-2" : ""}`}
-            data-title={post.data.title}
-            data-description={post.data.description}
-            data-tags={post.data.tags?.join(',')}
-            data-index={index}
-            data-date={post.data.pubDate.valueOf()}
-          >
-            <BlogCard
-              title={post.data.title}
-              pubDate={post.data.pubDate}
-              link={`/blog/${post.id}/`}
-              imageSrc={post.data.heroImage}
-              isLarge={index === 0}
-              tags={post.data.tags}
-            />
-          </div>
-        ))}
-      </div>
+            <!-- Blog Posts Container -->
+            <div id="blogPosts" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {
+                    posts.map((post, index) => (
+                        <div
+                            class={`blog-post ${index === 0 ? "md:col-span-2" : ""}`}
+                            data-title={post.data.title}
+                            data-description={post.data.description}
+                            data-tags={post.data.tags?.join(",")}
+                            data-index={index}
+                            data-date={post.data.pubDate.valueOf()}
+                        >
+                            <BlogCard
+                                title={post.data.title}
+                                pubDate={post.data.pubDate}
+                                link={`/blog/${post.id}/`}
+                                imageSrc={post.data.heroImage}
+                                isLarge={index === 0}
+                                tags={post.data.tags}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
 
-      <!-- No Results Message -->
-      <div id="noResults" class="hidden text-center py-8 text-gray-500">
-        No posts found matching your search.
-      </div>
-    </main>
-    <Footer />
+            <!-- No Results Message -->
+            <div id="noResults" class="hidden text-center py-8 text-gray-500">
+                No posts found matching your search.
+            </div>
+        </main>
+        <Footer />
 
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Use proper type casting for input elements
-        const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
-        const sortToggle = document.getElementById('sortToggle');
-        const blogPosts = document.getElementById('blogPosts');
-        const tagFilters = document.querySelectorAll('.tag-filter');
-        const noResults = document.getElementById('noResults');
-        const sortIcon = document.getElementById('sortIcon');
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Use proper type casting for input elements
+                const searchInput = document.getElementById(
+                    "searchInput",
+                ) as HTMLInputElement | null;
+                const sortToggle = document.getElementById("sortToggle");
+                const blogPosts = document.getElementById("blogPosts");
+                const tagFilters = document.querySelectorAll(".tag-filter");
+                const noResults = document.getElementById("noResults");
+                const sortIcon = document.getElementById("sortIcon");
 
-        // Return early if blog posts container doesn't exist
-        if (!blogPosts) return;
+                // Return early if blog posts container doesn't exist
+                if (!blogPosts) return;
 
-        let isAscending = false;
-        let currentTag = '';
+                let isAscending = false;
+                let currentTag = "";
 
-        function resetLayout() {
-          const blogPostsContainer = document.getElementById('blogPosts');
-          if (!blogPostsContainer) return;
+                function resetLayout() {
+                    const blogPostsContainer =
+                        document.getElementById("blogPosts");
+                    if (!blogPostsContainer) return;
 
-          const posts = Array.from(blogPostsContainer.children);
-          posts.forEach((post, idx) => {
-            post.classList.remove('hidden', 'md:col-span-2');
-            if (idx === 0) {
-              post.classList.add('md:col-span-2');
-            }
-          });
-          if (noResults) noResults.classList.add('hidden');
-        }
+                    const posts = Array.from(blogPostsContainer.children);
+                    posts.forEach((post, idx) => {
+                        post.classList.remove("hidden", "md:col-span-2");
+                        if (idx === 0) {
+                            post.classList.add("md:col-span-2");
+                        }
+                    });
+                    if (noResults) noResults.classList.add("hidden");
+                }
 
-        function sortPosts() {
-          const blogPostsContainer = document.getElementById('blogPosts');
-          if (!blogPostsContainer) return;
+                function sortPosts() {
+                    const blogPostsContainer =
+                        document.getElementById("blogPosts");
+                    if (!blogPostsContainer) return;
 
-          const posts = Array.from(blogPostsContainer.children);
-          const sortedPosts = posts.sort((a, b) => {
-            const dateA = parseInt(a.getAttribute('data-date') || '0');
-            const dateB = parseInt(b.getAttribute('data-date') || '0');
-            return isAscending ? dateA - dateB : dateB - dateA;
-          });
+                    const posts = Array.from(blogPostsContainer.children);
+                    const sortedPosts = posts.sort((a, b) => {
+                        const dateA = parseInt(
+                            a.getAttribute("data-date") || "0",
+                        );
+                        const dateB = parseInt(
+                            b.getAttribute("data-date") || "0",
+                        );
+                        return isAscending ? dateA - dateB : dateB - dateA;
+                    });
 
-          // Remove all posts
-          posts.forEach(post => post.remove());
+                    // Remove all posts
+                    posts.forEach((post) => post.remove());
 
-          // Add sorted posts back
-          sortedPosts.forEach((post, idx) => {
-            post.classList.remove('md:col-span-2');
-            if (idx === 0) {
-              post.classList.add('md:col-span-2');
-            }
-            blogPostsContainer.appendChild(post);
-          });
+                    // Add sorted posts back
+                    sortedPosts.forEach((post, idx) => {
+                        post.classList.remove("md:col-span-2");
+                        if (idx === 0) {
+                            post.classList.add("md:col-span-2");
+                        }
+                        blogPostsContainer.appendChild(post);
+                    });
 
-          // Update icon rotation
-          if (sortIcon) {
-            sortIcon.style.transform = isAscending ? 'rotate(180deg)' : '';
-          }
-        }
+                    // Update icon rotation
+                    if (sortIcon) {
+                        sortIcon.style.transform = isAscending
+                            ? "rotate(180deg)"
+                            : "";
+                    }
+                }
 
-        function filterPosts() {
-          // Get search term with proper null check
-          const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+                function filterPosts() {
+                    // Get search term with proper null check
+                    const searchTerm = searchInput
+                        ? searchInput.value.toLowerCase().trim()
+                        : "";
 
-          const blogPostsContainer = document.getElementById('blogPosts');
-          if (!blogPostsContainer) return;
+                    const blogPostsContainer =
+                        document.getElementById("blogPosts");
+                    if (!blogPostsContainer) return;
 
-          let hasVisiblePosts = false;
-          let firstVisibleFound = false;
-          const posts = Array.from(blogPostsContainer.children);
+                    let hasVisiblePosts = false;
+                    let firstVisibleFound = false;
+                    const posts = Array.from(blogPostsContainer.children);
 
-          posts.forEach((post) => {
-            const title = post.getAttribute('data-title')?.toLowerCase() || '';
-            const description = post.getAttribute('data-description')?.toLowerCase() || '';
-            const tags = post.getAttribute('data-tags')?.toLowerCase() || '';
+                    posts.forEach((post) => {
+                        const title =
+                            post.getAttribute("data-title")?.toLowerCase() ||
+                            "";
+                        const description =
+                            post
+                                .getAttribute("data-description")
+                                ?.toLowerCase() || "";
+                        const tags =
+                            post.getAttribute("data-tags")?.toLowerCase() || "";
 
-            // Check if post matches both search term and tag filter
-            const matchesSearch = !searchTerm ||
-              title.includes(searchTerm) ||
-              description.includes(searchTerm) ||
-              tags.includes(searchTerm);
+                        // Check if post matches both search term and tag filter
+                        const matchesSearch =
+                            !searchTerm ||
+                            title.includes(searchTerm) ||
+                            description.includes(searchTerm) ||
+                            tags.includes(searchTerm);
 
-            const matchesTag = !currentTag || (tags && tags.split(',').includes(currentTag));
+                        const matchesTag =
+                            !currentTag ||
+                            (tags && tags.split(",").includes(currentTag));
 
-            const shouldShow = matchesSearch && matchesTag;
+                        const shouldShow = matchesSearch && matchesTag;
 
-            post.classList.toggle('hidden', !shouldShow);
-            post.classList.remove('md:col-span-2');
+                        post.classList.toggle("hidden", !shouldShow);
+                        post.classList.remove("md:col-span-2");
 
-            if (shouldShow) {
-              hasVisiblePosts = true;
-              if (!firstVisibleFound) {
-                post.classList.add('md:col-span-2');
-                firstVisibleFound = true;
-              }
-            }
-          });
+                        if (shouldShow) {
+                            hasVisiblePosts = true;
+                            if (!firstVisibleFound) {
+                                post.classList.add("md:col-span-2");
+                                firstVisibleFound = true;
+                            }
+                        }
+                    });
 
-          if (noResults) {
-            noResults.classList.toggle('hidden', hasVisiblePosts);
-          }
-        }
+                    if (noResults) {
+                        noResults.classList.toggle("hidden", hasVisiblePosts);
+                    }
+                }
 
-        // Update tag filter button styles
-        function updateTagButtons() {
-          tagFilters.forEach(btn => {
-            const tag = btn.getAttribute('data-tag');
-            if (tag === currentTag) {
-              btn.classList.remove('bg-gray-200', 'text-gray-700');
-              btn.classList.add('bg-blue-500', 'text-white');
-            } else {
-              btn.classList.remove('bg-blue-500', 'text-white');
-              btn.classList.add('bg-gray-200', 'text-gray-700');
-            }
-          });
-        }
+                // Update tag filter button styles
+                function updateTagButtons() {
+                    tagFilters.forEach((btn) => {
+                        const tag = btn.getAttribute("data-tag");
+                        if (tag === currentTag) {
+                            btn.classList.remove(
+                                "bg-gray-200",
+                                "text-gray-700",
+                            );
+                            btn.classList.add("bg-blue-500", "text-white");
+                        } else {
+                            btn.classList.remove("bg-blue-500", "text-white");
+                            btn.classList.add("bg-gray-200", "text-gray-700");
+                        }
+                    });
+                }
 
-        // Add event listeners
-        if (sortToggle) {
-          sortToggle.addEventListener('click', () => {
-            isAscending = !isAscending;
-            sortPosts();
-          });
-        }
+                // Add event listeners
+                if (sortToggle) {
+                    sortToggle.addEventListener("click", () => {
+                        isAscending = !isAscending;
+                        sortPosts();
+                    });
+                }
 
-        if (searchInput) {
-          searchInput.addEventListener('input', () => {
-            filterPosts();
-          });
-        }
+                if (searchInput) {
+                    searchInput.addEventListener("input", () => {
+                        filterPosts();
+                    });
+                }
 
-        tagFilters.forEach(btn => {
-          btn.addEventListener('click', () => {
-            currentTag = btn.getAttribute('data-tag') || '';
-            updateTagButtons();
-            filterPosts();
-          });
-        });
+                tagFilters.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        currentTag = btn.getAttribute("data-tag") || "";
+                        updateTagButtons();
+                        filterPosts();
+                    });
+                });
 
-        // Initialize tag buttons
-        updateTagButtons();
-      });
-    </script>
-  </body>
+                // Initialize tag buttons
+                updateTagButtons();
+            });
+        </script>
+    </body>
 </html>
