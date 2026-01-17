@@ -1,7 +1,7 @@
 {
   "name": "pROHject Management",
   "description": "Free online book on managing basic software projects",
-  "stack": ["Astro", "Tailwind", "Cloudflare Pages", "English"],
+  "stack": ["Astro", "Tailwind", "Cloudflare", "English"],
   "url": "https://prohjectmanagement.com/",
   "status": "COMPLETE",
   "featured": true

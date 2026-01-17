@@ -32,13 +32,13 @@ const featuredProjects = allProjects
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
-    <body class="flex flex-col min-h-full m-0 bg-gray-50">
+    <body class="flex flex-col min-h-full m-0 bg-gray-50 dark:bg-neutral-900 text-gray-900 dark:text-neutral-100 transition-colors">
         <Header />
         <main class="flex-grow max-w-3xl mx-auto px-4 py-8 w-full">
             <h1 class="text-4xl font-bold mb-8">Welcome to My Blog</h1>
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold mb-4">About Me</h2>
-                <p class="text-lg">
+                <p class="text-lg text-gray-700 dark:text-neutral-300">
                     Howdy and welcome to my corner of the internet! Not sure
                     what you'll find here but it's something.
                 </p>
@@ -55,13 +55,13 @@ const featuredProjects = allProjects
                                 <li class="flex flex-col sm:flex-row sm:justify-between">
                                     <a
                                         href={`/blog/${post.id}/`}
-                                        class="text-blue-600 hover:underline"
+                                        class="text-neutral-700 dark:text-neutral-300 hover:underline"
                                     >
                                         {post.data.title}
                                     </a>
                                     <time
                                         datetime={post.data.pubDate.toISOString()}
-                                        class="text-sm text-gray-500"
+                                        class="text-sm text-gray-500 dark:text-neutral-400"
                                     >
                                         {post.data.pubDate.toLocaleDateString(
                                             "en-us",
@@ -92,7 +92,7 @@ const featuredProjects = allProjects
                                         href={project.data.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="text-blue-600 hover:underline"
+                                        class="text-neutral-700 dark:text-neutral-300 hover:underline"
                                     >
                                         {project.data.name}
                                     </a>
@@ -101,11 +101,11 @@ const featuredProjects = allProjects
                                             class={`text-xs px-2 py-1 rounded-full ${
                                                 project.data.status ===
                                                 "COMPLETE"
-                                                    ? "bg-green-100 text-green-800"
+                                                    ? "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-400"
                                                     : project.data.status ===
                                                         "ACTIVE"
-                                                      ? "bg-blue-100 text-blue-800"
-                                                      : "bg-red-100 text-red-800"
+                                                      ? "bg-gray-100 text-gray-800 dark:bg-neutral-700 dark:text-neutral-300"
+                                                      : "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-400"
                                             }`}
                                         >
                                             {project.data.status}
@@ -126,13 +126,13 @@ const featuredProjects = allProjects
                             <li class="flex flex-col sm:flex-row sm:justify-between">
                                 <a
                                     href={`/blog/${post.id}/`}
-                                    class="text-blue-600 hover:underline"
+                                    class="text-neutral-700 dark:text-neutral-300 hover:underline"
                                 >
                                     {post.data.title}
                                 </a>
                                 <time
                                     datetime={post.data.pubDate.toISOString()}
-                                    class="text-sm text-gray-500"
+                                    class="text-sm text-gray-500 dark:text-neutral-400"
                                 >
                                     {post.data.pubDate.toLocaleDateString(
                                         "en-us",
