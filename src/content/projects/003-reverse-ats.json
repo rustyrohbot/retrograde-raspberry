@@ -2,7 +2,7 @@
   "name": "Job Hntng",
   "description": "Web app to better organize and visualize job hunting,",
   "stack": ["HTMX", "Tailwind", "Templ", "Go", "Pocketbase"],
-  "url": "https://github.com/rustyrohbot/job-hntng",
+  "url": "https://github.com/prohjectmanager/job-hntng",
   "status": "COMPLETE",
   "featured": true
 }
