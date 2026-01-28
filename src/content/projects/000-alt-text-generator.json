@@ -1,8 +1,16 @@
 {
-  "name": "Alt Text Generator",
-  "description": "A small web app that first prompts for an Anthropic or OpenAI API key, and then allows you to upload images to generate alt text using the selected provider.",
-  "stack": ["Go", "Tailwind", "Templ", "htmx"],
-  "url": "https://github.com/prohjectmanager/alt-text-generator-v1",
+  "name": "image-dscrbr",
+  "description": "A small web app that lets you upload photos and use a local LLM to generate descriptive text",
+  "stack": [
+    "HTMX",
+    "Tailwind",
+    "Deno",
+    "TypeScript",
+    "Ollama",
+    "IBM Granite",
+    "Google Gemma 3"
+  ],
+  "url": "https://github.com/prohjectmanager/image-dscrbr",
   "status": "COMPLETE",
   "featured": false
 }

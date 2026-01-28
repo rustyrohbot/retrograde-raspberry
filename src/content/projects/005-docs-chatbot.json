@@ -4,5 +4,5 @@
   "stack": ["HTMX", "Tailwind", "Deno", "TypeScript", "Ollama", "IBM Granite"],
   "url": "https://github.com/prohjectmanager/docs-chatbot",
   "status": "COMPLETE",
-  "featured": true
+  "featured": false
 }
